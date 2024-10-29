@@ -13,7 +13,7 @@ class Habit(models.Model):
     pleasant = models.BooleanField(verbose_name="Признак приятной привычки")
     periodicity = models.PositiveSmallIntegerField(verbose_name="Периодичность в днях", default=1)
     public = models.BooleanField(verbose_name="Признак публичности", default=False)
-    time_to_complete = models.TimeField(verbose_name="Длительность выполнения", blank=True, null=True)
+    time_complete = models.PositiveIntegerField(verbose_name="Длительность выполнения в секундах", blank=True, null=True)
 
     reward = models.CharField(max_length=200, verbose_name="Вознаграждение", blank=True, null=True)
     # or
