@@ -24,6 +24,7 @@ INSTALLED_APPS = [
     'rest_framework',
 
     'users',
+    'habit'
 ]
 
 MIDDLEWARE = [
@@ -84,7 +85,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'Russia/Moscow'
+TIME_ZONE = 'UTC'
 
 USE_I18N = True
 
