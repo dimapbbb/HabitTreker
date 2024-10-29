@@ -12,7 +12,6 @@ class HabitViewSet(viewsets.ModelViewSet):
     queryset = Habit.objects.all()
     serializer_class = HabitSerializer
 
-
     def perform_create(self, serializer):
         serializer.save(
             user=User.objects.get(id=1)
