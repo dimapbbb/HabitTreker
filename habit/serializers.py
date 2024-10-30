@@ -1,14 +1,20 @@
 from rest_framework import serializers
 from rest_framework.exceptions import ValidationError
+from rest_framework.fields import SerializerMethodField
 
 from habit.models import Habit
 
 
 class HabitSerializer(serializers.ModelSerializer):
+    owner = SerializerMethodField()
 
     class Meta:
         model = Habit
-        fields = '__all__'
+        fields = ('place', 'time', 'action', 'pleasant', 'periodicity', 'public', 'time_complete', 'reward', 'related_habit_id', 'owner')
+
+    @staticmethod
+    def get_owner(obj):
+        return obj.user.pk
 
     def validate(self, attrs):
         reward = attrs.get('reward')
