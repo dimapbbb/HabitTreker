@@ -36,6 +36,16 @@ class UserTestCase(APITestCase):
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertEqual(response.json()["first_name"], new_data["first_name"])
 
+        new_auth_user = User.objects.create(
+            email="tester@mial.com",
+            password="tester_password"
+        )
+
+        self.client.force_authenticate(user=new_auth_user)
+
+        response = self.client.get(url)
+        self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
+
     def test_retrieve_user(self):
         url = f"/user/{self.user.pk}/"
 
@@ -43,6 +53,16 @@ class UserTestCase(APITestCase):
 
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertEqual(response.json()["email"], self.user.email)
+
+        new_user = User.objects.create(
+            email="tester@mial.com",
+            password="tester_password"
+        )
+
+        self.client.force_authenticate(user=new_user)
+
+        response = self.client.get(url)
+        self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
 
 
     def test_destroy_user(self):
