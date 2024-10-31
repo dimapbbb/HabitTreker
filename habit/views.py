@@ -33,3 +33,4 @@ class PublicHabitListAPIView(generics.ListAPIView):
     queryset = Habit.objects.filter(public=True)
     serializer_class = HabitSerializer
     permission_classes = [IsAuthenticated]
+    pagination_class = Pagination
