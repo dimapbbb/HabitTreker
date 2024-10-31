@@ -9,9 +9,11 @@ class Habit(models.Model):
     place = models.CharField(max_length=100, verbose_name="Место")
     time = models.TimeField(verbose_name="Время напоминаия")
     action = models.CharField(max_length=500, verbose_name="Действие")
-
     pleasant = models.BooleanField(verbose_name="Признак приятной привычки")
+
     periodicity = models.PositiveSmallIntegerField(verbose_name="Периодичность в днях", default=1)
+    next_send_date = models.DateField(auto_now_add=True, verbose_name="Дата следующей отправки", blank=True, null=True)
+
     public = models.BooleanField(verbose_name="Признак публичности", default=False)
     time_complete = models.PositiveIntegerField(verbose_name="Длительность выполнения в секундах", blank=True, null=True)
 
