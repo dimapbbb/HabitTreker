@@ -19,7 +19,7 @@ class Habit(models.Model):
 
     reward = models.CharField(max_length=200, verbose_name="Вознаграждение", blank=True, null=True)
     # or
-    related_habit_id = models.PositiveIntegerField(verbose_name="пк связанной привычки", blank=True, null=True)
+    related_habit = models.ForeignKey("self", on_delete=models.SET_NULL, verbose_name="пк связанной привычки", blank=True, null=True)
 
     def __str__(self):
         return f" Я буду {self.action} в {self.time} в {self.place}"

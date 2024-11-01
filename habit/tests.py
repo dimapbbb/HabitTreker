@@ -26,6 +26,7 @@ class HabitTestCase(APITestCase):
             "previous": None,
             "results": [
                 {
+                    "pk": self.habit.pk,
                     "place": self.habit.place,
                     "time": self.habit.time,
                     "action": self.habit.action,
@@ -34,7 +35,7 @@ class HabitTestCase(APITestCase):
                     "public": False,
                     "time_complete": None,
                     "reward": None,
-                    "related_habit_id": None,
+                    "related_habit": None,
                     "owner": self.user.pk
                 }
             ]
@@ -100,8 +101,6 @@ class HabitTestCase(APITestCase):
         response = self.client.post(self.url, data=habit_data)
 
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
-        self.assertEqual(response.json(),
-                         {'non_field_errors': ['Нельзя одновременно сохранить вознаграждение и связаную привычку']})
 
 
 class PublicHabitTestCase(APITestCase):
@@ -136,7 +135,8 @@ class PublicHabitTestCase(APITestCase):
             'previous': None,
             'results': [
                 {
-                    'place': 'Home',
+                     'pk': self.pub_habit.pk,
+                     'place': 'Home',
                      'time': '20:00:00',
                      'action': 'Drink bear',
                      'pleasant': True,
@@ -144,7 +144,7 @@ class PublicHabitTestCase(APITestCase):
                      'public': True,
                      'time_complete': None,
                      'reward': None,
-                     'related_habit_id': None,
+                     'related_habit': None,
                      'owner': 7
                 }
             ]

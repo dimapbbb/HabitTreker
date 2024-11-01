@@ -10,7 +10,7 @@ class HabitSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Habit
-        fields = ('place', 'time', 'action', 'pleasant', 'periodicity', 'public', 'time_complete', 'reward', 'related_habit_id', 'owner')
+        fields = ('pk', 'place', 'time', 'action', 'pleasant', 'periodicity', 'public', 'time_complete', 'reward', 'related_habit', 'owner')
 
     @staticmethod
     def get_owner(obj):
@@ -18,7 +18,7 @@ class HabitSerializer(serializers.ModelSerializer):
 
     def validate(self, attrs):
         reward = attrs.get('reward')
-        related_habit = attrs.get('related_habit_id')
+        related_habit = attrs.get('related_habit')
         time_complete = attrs.get('time_complete')
         pleasant = attrs.get('pleasant')
         periodicity = attrs.get('periodicity')
